@@ -1,0 +1,10 @@
+{
+    "city": "city of craigslist",
+    "maxprice": maximum price for listing,
+    "locTopLeft": [lat,long],
+    "locBottomRight": [lat,long],
+    "interval": minutes to check,
+    "yoUsername": "your yo username",
+    "yoPassword": "Your yo password",
+    "udid": "Your device number",
+}
