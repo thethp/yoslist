@@ -1,7 +1,6 @@
 var yoplait = require('yoplait');
 var config = require('./config.json');
-var http = require('http');
-
+var request = require('request');
 console.log('Signing up: ' + config.yoUsername + ' with UDID: ' + config.udid);
 yoplait.logIn(config.yoUsername,config.yoPassword,config.udid,function(err,yo) {
     if (err) {
@@ -13,12 +12,11 @@ yoplait.logIn(config.yoUsername,config.yoPassword,config.udid,function(err,yo) {
     function checkListings() {
 	console.log('Checking Listings');
 	var listingURL = 'http://'+config.city+'.craigslist.org/jsonsearch/sub/?sale_date=-&maxAsk='+config.maxPrice;
-	http.get(listingURL, function(res) {
-	    res.on('data', function(data) {
-		var listingArr = data[0];
-		console.log(listingArr);
+	request(listingURL, function(err, res, body) {
+	    if (!err && res.statusCode == 200) {
+		console.log(JSON.parse(body))
 		//sendOutYo();
-	    });
+	    }
 	});
     }
 

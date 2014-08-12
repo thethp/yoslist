@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/thethp/yoslist",
   "dependencies": {
+    "request": "^2.36.0",
     "yoplait": "^0.5.0"
   }
 }
