@@ -6,16 +6,27 @@ yoplait.logIn(config.yoUsername,config.yoPassword,config.udid,function(err,yo) {
     if (err) {
 	return console.log('Sign up failed! ', err);
     }
-
-    setInterval(checkListings, 60*config.interval);
+    
+    var lastTime = 0;
+    var newListing = false;
+    setInterval(checkListings, 60000*config.interval);
     
     function checkListings() {
 	console.log('Checking Listings');
 	var listingURL = 'http://'+config.city+'.craigslist.org/jsonsearch/sub/?sale_date=-&maxAsk='+config.maxPrice;
 	request(listingURL, function(err, res, body) {
 	    if (!err && res.statusCode == 200) {
-		console.log(JSON.parse(body))
-		//sendOutYo();
+		var listings = JSON.parse(body)[0];
+		for(var i = 0; i < listings.length; i++) {
+		    if(listings[i].Longitude > config.locTopLeft[1] && listings[i].Longitude < config.locBottomRight[1] && listings[i].Latitude < config.locTopLeft[0] && listings[i].Latitude < config.locBottomRight[0] && listings[i].PostedDate > lastTime) {
+			lastTime = listings[i].PostedDate;
+			newListing = true;
+		    }
+		}
+		if(newListing) {
+		    sendOutYo();
+		    newListing = false;
+		}
 	    }
 	});
     }
