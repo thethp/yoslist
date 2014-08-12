@@ -4,7 +4,9 @@
     "locTopLeft": [lat,long],
     "locBottomRight": [lat,long],
     "interval": minutes to check,
-    "yoUsername": "your yo username",
-    "yoPassword": "Your yo password",
+    "yoUsername": "the account from which one desires to yo",
+    "yoPassword": "password for said yo account",
     "udid": "Your device number",
+    "yoToAccount": "the account to which one desires to yo",
+    "craigslistSearchType": "the craigslist prefix for the apartment search type [aap, sub, etc]"
 }

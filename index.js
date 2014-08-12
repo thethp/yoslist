@@ -13,7 +13,7 @@ yoplait.logIn(config.yoUsername,config.yoPassword,config.udid,function(err,yo) {
     
     function checkListings() {
 	console.log('Checking Listings');
-	var listingURL = 'http://'+config.city+'.craigslist.org/jsonsearch/sub/?sale_date=-&maxAsk='+config.maxPrice;
+	var listingURL = 'http://'+config.city+'.craigslist.org/jsonsearch/'+config.craigslistSearchType+'/?sale_date=-&maxAsk='+config.maxPrice;
 	request(listingURL, function(err, res, body) {
 	    if (!err && res.statusCode == 200) {
 		var listings = JSON.parse(body)[0];
