@@ -1,6 +1,6 @@
 {
     "city": "city of craigslist",
-    "maxprice": maximum price for listing,
+    "maxPrice": "maximum price for listing",
     "locTopLeft": [lat,long],
     "locBottomRight": [lat,long],
     "interval": minutes to check,
